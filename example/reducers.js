@@ -30,7 +30,7 @@ function sum(state = 0, action) {
   }
 }
 
-export default combineReducers({
+export default {
   info,
   sum,
-});
+};

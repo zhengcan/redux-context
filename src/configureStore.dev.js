@@ -1,24 +1,31 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import { persistState } from 'redux-devtools';
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 import DevTools from './DevTools';
+import thunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
-const enhancer = compose(
-  DevTools.instrument(),
-  persistState(
-    window.location.href.match(
-      /[?&]debug_session=([^&#]+)\b/
+export default function configureStore(rootReducer, initialState, history) {
+  const middleware = routerMiddleware(history);
+
+  const store = createStore(
+    combineReducers({
+      ...rootReducer,
+      router: routerReducer
+    }),
+    initialState || undefined,
+    compose(
+      applyMiddleware(middleware, thunk, createLogger({
+        collapsed: true
+      })),
+      DevTools.instrument(),
+      persistState(
+        window.location.href.match(
+          /[?&]debug_session=([^&#]+)\b/
+        )
+      )
     )
-  )
-);
-
-export default function configureStore(rootReducer, initialState) {
-  const store = createStore(rootReducer, initialState, enhancer);
-
-  // if (module.hot) {
-  //   module.hot.accept('../reducers', () =>
-  //     store.replaceReducer(require('../reducers').default)
-  //   );
-  // }
+  );
 
   return store;
 }

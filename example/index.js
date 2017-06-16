@@ -3,19 +3,20 @@ import IndexPage from './IndexPage';
 import renderPage from '../src/renderPage';
 import reducers from './reducers';
 import configureStore from '../src/configureStore';
+import createHistory from 'history/createBrowserHistory';
 
-let store = configureStore(reducers);
+let history = createHistory();
+
+let store = configureStore(reducers, null, history);
+
+renderPage(IndexPage, null, { store, history });
+
+// Hot Module Replacement API
 if (module.hot) {
   module.hot.accept('./reducers', () =>
     store.replaceReducer(require('./reducers').default)
   );
-}
-
-renderPage(IndexPage, null, { store });
-
-// Hot Module Replacement API
-if (module.hot) {
   module.hot.accept('./IndexPage', () => {
-    renderPage(IndexPage, null, { store });
+    renderPage(IndexPage, null, { store, history });
   });
 }
