@@ -1,0 +1,132 @@
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+import { connect } from 'react-redux';
+import _ from 'lodash';
+import * as ActionTypes from './actions';
+
+const BasicExample = () => (
+  <Router>
+    <div>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/topics">Topics</Link></li>
+      </ul>
+
+      <hr/>
+
+      <Route exact path="/" component={Home}/>
+      <Route path="/about" component={About}/>
+      <Route path="/topics" component={Topics}/>
+    </div>
+  </Router>
+)
+
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+)
+
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+)
+
+const Topics = ({ match }) => (
+  <div>
+    <h2>Topics</h2>
+    <ul>
+      <li>
+        <Link to={`${match.url}/rendering`}>
+          Rendering with React
+        </Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/components`}>
+          Components
+        </Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/props-v-state`}>
+          Props v. State
+        </Link>
+      </li>
+    </ul>
+
+    <Route path={`${match.url}/:topicId`} component={Topic}/>
+    <Route exact path={match.url} render={() => (
+      <h3>Please select a topic.</h3>
+    )}/>
+  </div>
+)
+
+const Topic = ({ match }) => (
+  <div>
+    <h3>{match.params.topicId}</h3>
+  </div>
+)
+
+class ContentPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 0
+    };
+  }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        counter: this.state.counter + 1
+      });
+    }, 1000);
+  }
+  render() {
+    let props = this.props;
+    return (
+      <div>
+        <h1>ContentPanel - <small>{this.state.counter}</small></h1>
+        <hr/>
+          sum = {this.props.sum}
+          <button onClick={this.props.onPlus}>+</button>
+          <button onClick={this.props.onMinus}>-</button>
+        <hr/>
+        <div>
+          {_.map(props, (v, k) =>
+            <p key={k}>{k} = {JSON.stringify(v)}</p>
+          )}
+        </div>
+        <hr/>
+        <BasicExample />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    sum: state.sum
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onPlus: () => {
+      dispatch({
+        type: ActionTypes.COUNTER_PLUS
+      });
+    },
+    onMinus: () => {
+      dispatch({
+        type: ActionTypes.COUNTER_MINUS
+      });
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContentPanel);

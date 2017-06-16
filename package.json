@@ -1,0 +1,47 @@
+{
+  "name": "redux-helper",
+  "version": "0.1.0",
+  "description": "Integrate Redux with React-Router and more",
+  "main": "lib/index.js",
+  "repository": "https://github.com/zhengcan/redux-helper",
+  "author": "Zheng Can <zc3593835@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "gulp",
+    "build:dev": "cross-env NODE_ENV=development gulp build:dev",
+    "build:prod": "cross-env NODE_ENV=production gulp build:prod",
+    "clean": "gulp clean",
+    "test": "gulp test",
+    "test:watch": "gulp test:watch",
+    "webpack:dev": "cross-env NODE_ENV=development gulp webpack:dev",
+    "webpack:prod": "cross-env NODE_ENV=production gulp webpack:prod",
+    "start": "cross-env NODE_ENV=watch gulp webpack:watch"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "cross-env": "^5.0.1",
+    "gulp": "^3.9.1",
+    "gulp-predefined-tasks": "^0.1.10",
+    "lodash": "^4.17.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-hot-loader": "next",
+    "redux-devtools": "^3.4.0",
+    "redux-devtools-dock-monitor": "^1.1.2",
+    "redux-devtools-filterable-log-monitor": "^0.6.7",
+    "redux-devtools-log-monitor": "^1.3.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "next",
+    "redux": "^3.6.0"
+  },
+  "peerDependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-hot-loader": "next"
+  }
+}
