@@ -5,6 +5,9 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
+import {
+  withRouter
+} from 'react-router';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import * as ActionTypes from './actions';
@@ -139,4 +142,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContentPanel);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ContentPanel));

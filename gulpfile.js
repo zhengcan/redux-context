@@ -10,6 +10,7 @@ var options = {
       }
     },
     devServer: {
+      historyApiFallback: true,
       contentBase: [
         './example',
         './src',

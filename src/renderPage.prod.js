@@ -4,7 +4,7 @@ import pageProps from './pageProps';
 
 export default function renderPage(ReactElement, domElement, extraProps) {
   if (!ReactElement) {
-    throw Error('No ReactElement used to render.');
+    throw new Error('No ReactElement used to render.');
   } else if (typeof ReactElement === 'function') {
     ReactElement = <ReactElement {...pageProps} {...extraProps} />;
   }
@@ -17,7 +17,7 @@ export default function renderPage(ReactElement, domElement, extraProps) {
     domElement = document.getElementById('page') || document.getElementById('root');
   }
   if (!domElement) {
-    throw Error('Unable to find domElement to render into.');
+    throw new Error('Unable to find domElement to render into.');
   }
 
   ReactDOM.render(
