@@ -1,6 +1,26 @@
 import { should, expect, assert } from 'chai';
 import * as Actions from '../src/actions';
 
+describe('makeActionGroup', () => {
+  it('simple', () => {
+    let group = Actions.makeActionGroup('EX', 'OP1', 'OP2');
+    console.log(group);
+    expect(group).is.not.null;
+    expect(group.OP1).eq('EX.OP1');
+    expect(group.OP2).eq('EX.OP2');
+  });
+  it('viaAjaxAction', () => {
+    let group = Actions.makeAjaxAction('EX', 'OP1', 'OP2');
+    console.log(group);
+    expect(group).is.not.null;
+    expect(group.QUERY).eq('EX.QUERY');
+    expect(group.SUCCESS).eq('EX.SUCCESS');
+    expect(group.ERROR).eq('EX.ERROR');
+    expect(group.OP1).eq('EX.OP1');
+    expect(group.OP2).eq('EX.OP2');
+  });
+});
+
 describe('makeAjaxAction', () => {
   let ajax = Actions.makeAjaxAction('AJAX');
   it('defaults', () => {
@@ -37,5 +57,4 @@ describe('makeTxAction', () => {
     let ext = tx.extend('ABC');
     console.log(ext);
   });
-
 });

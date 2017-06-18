@@ -35,17 +35,21 @@ class ActionGroup {
   }
 }
 
+export function makeActionGroup(name, ...ops) {
+  return new ActionGroup(name, ...ops);
+}
+
 export const QUERY   = 'QUERY';
 export const SUCCESS = 'SUCCESS';
 export const ERROR   = 'ERROR';
-export function makeAjaxAction(name) {
-  return new ActionGroup(name, QUERY, SUCCESS, ERROR);
+export function makeAjaxAction(name, ...ops) {
+  return new ActionGroup(name, QUERY, SUCCESS, ERROR, ...ops);
 }
 
 export const BEGIN  = 'BEGIN';
 export const UPDATE = 'UPDATE';
 export const COMMIT = 'COMMIT';
 export const CANCEL = 'CANCEL';
-export function makeTxAction(name, ops) {
-  return new ActionGroup(name, BEGIN, UPDATE, COMMIT, CANCEL);
+export function makeTxAction(name, ...ops) {
+  return new ActionGroup(name, BEGIN, UPDATE, COMMIT, CANCEL, ...ops);
 }
