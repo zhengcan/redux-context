@@ -1,15 +1,15 @@
 import React from 'react';
-import IndexPage from './IndexPage';
-import renderPage from '../src/renderPage';
-import reducers from './reducers';
-import configureStore from '../src/configureStore';
 import createHistory from 'history/createBrowserHistory';
+import renderPage from '../src/renderPage';
+import configureStore from '../src/configureStore';
+import IndexPage from './IndexPage';
+import reducers from './reducers';
 
 let history = createHistory();
 
 let store = configureStore(reducers, null, history);
 
-renderPage(IndexPage, null, { store, history });
+renderPage(IndexPage, { store, history });
 
 // Hot Module Replacement API
 if (module.hot) {
@@ -17,6 +17,6 @@ if (module.hot) {
     store.replaceReducer(require('./reducers').default)
   );
   module.hot.accept('./IndexPage', () => {
-    renderPage(IndexPage, null, { store, history });
+    renderPage(IndexPage, { store, history });
   });
 }

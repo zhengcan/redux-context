@@ -4,10 +4,11 @@ import { Provider } from 'react-redux';
 import DevTools from './DevTools';
 
 import createHistory from 'history/createBrowserHistory';
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 
-export default function createPage(ReactElement) {
+export default function withRedux(ReactElement) {
   class ReduxContainer extends React.Component {
+    static displayName = "withRedux"
     static propTypes = {
       store: PropTypes.object.isRequired,
       history: PropTypes.object.isRequired,

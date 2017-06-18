@@ -1,6 +1,6 @@
 import React from 'react';
+import withRedux from '../src/withRedux';
 import ContentPanel from './ContentPanel';
-import createPage from '../src/createPage';
 
 class IndexPage extends React.Component {
   render() {
@@ -10,4 +10,4 @@ class IndexPage extends React.Component {
   }
 }
 
-export default createPage(IndexPage);
+export default withRedux(IndexPage);

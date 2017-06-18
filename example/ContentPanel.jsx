@@ -93,11 +93,14 @@ class ContentPanel extends React.Component {
     };
   }
   componentDidMount() {
-    setInterval(() => {
+    this.timer = setInterval(() => {
       this.setState({
         counter: this.state.counter + 1
       });
     }, 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
   render() {
     let props = this.props;
@@ -106,14 +109,16 @@ class ContentPanel extends React.Component {
         <h1>ContentPanel - <small>{this.state.counter}</small></h1>
         <hr/>
           sum = {this.props.sum}
+          &nbsp;
           <button onClick={this.props.onPlus}>+</button>
+          &nbsp;
           <button onClick={this.props.onMinus}>-</button>
         <hr/>
-        <div>
+        <ul>
           {_.map(props, (v, k) =>
-            <p key={k}>{k} = {JSON.stringify(v)}</p>
+            <li key={k}>{k} = {JSON.stringify(v)}</li>
           )}
-        </div>
+        </ul>
         <hr/>
         <BasicExample />
       </div>
