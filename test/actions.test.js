@@ -39,7 +39,8 @@ describe('makeAjaxAction', () => {
     let bound = ajax.bind({ id: 1 });
     console.log(bound);
     expect(bound).not.eq(ajax);
-    expect(bound.id).eq(1);
+    expect(bound.params).not.eq(ajax);
+    expect(bound.params.id).eq(1);
   });
 });
 

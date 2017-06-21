@@ -23,9 +23,10 @@ class ActionGroup {
   bind(params) {
     if (params) {
       let cloned = this.clone();
+      let clonedParams = cloned.params = {};
       for (var key in params) {
         if (params.hasOwnProperty(key)) {
-          cloned[key] = params[key];
+          clonedParams[key] = params[key];
         }
       }
       return cloned;
