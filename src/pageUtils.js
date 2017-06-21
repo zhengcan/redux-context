@@ -23,9 +23,13 @@ export function getPageProps(domElement) {
     }
   }
 
-  let baseUrl = pageProps.baseUrl;
-  if (baseUrl && baseUrl !== '/' && baseUrl.endsWith('/')) {
-    baseUrl = pageProps.baseUrl = baseUrl.substr(0, baseUrl.length - 1);
+  let basename = pageProps.basename || pageProps.baseUrl;
+  if (basename) {
+    if (basename !== '/' && basename.endsWith('/')) {
+      basename = pageProps.basename = basename.substr(0, basename.length - 1);
+    } else {
+      pageProps.basename =basename;
+    }
   }
 
   return pageProps;

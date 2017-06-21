@@ -15,7 +15,9 @@ export default function withRedux(ReactElement) {
       return (
         <Provider store={store}>
           <ConnectedRouter basename={rest.baseUrl} history={history}>
-            <ReactElement store={store} history={history} {...rest} />
+            {typeof(ReactElement) === 'function'
+            ? <ReactElement store={store} history={history} {...rest} />
+            : ReactElement}
           </ConnectedRouter>
         </Provider>
       );

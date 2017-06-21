@@ -1,15 +1,13 @@
 {
-  "name": "redux-func",
-  "version": "0.1.0-alpha.4",
-  "description": "Redux functions used to create store, render page, and integrate React-Router and more",
-  "repository": "https://github.com/zhengcan/redux-func",
+  "name": "redux-context",
+  "version": "0.1.0-alpha.6",
+  "description": "A redux delegate object used to create store, render page, and integrate React-Router and more",
+  "repository": "https://github.com/zhengcan/redux-context",
   "author": "Zheng Can <zc3593835@gmail.com>",
   "license": "MIT",
   "main": "lib/index.js",
-  "directories": {
-    "lib": "lib/"
-  },
   "files": [
+    "src",
     "lib"
   ],
   "scripts": {
@@ -17,6 +15,7 @@
     "build": "gulp",
     "build:dev": "cross-env NODE_ENV=development gulp build:dev",
     "build:prod": "cross-env NODE_ENV=production gulp build:prod",
+    "build:watch": "cross-env NODE_ENV=development gulp build:watch",
     "clean": "gulp clean",
     "test": "gulp test",
     "test:watch": "gulp test:watch",
