@@ -19,6 +19,19 @@ describe('makeActionGroup', () => {
     expect(group.OP1).eq('EX.OP1');
     expect(group.OP2).eq('EX.OP2');
   });
+  it('viaPromise', () => {
+    let group = Actions.makeActionGroup('EX', 'OP');
+    let promise1 = new Promise((resolve, reject) => {
+      resolve(group);
+    }).then(r => {
+      expect(r).eq(group);
+    });
+    let promise2 = new Promise((resolve, reject) => {
+      resolve(group.bind('OP2'));
+    }).then(r => {
+      expect(r).not.eq(group);
+    });
+  });
 });
 
 describe('makeAjaxAction', () => {

@@ -26,7 +26,7 @@ class ReduxContext {
   ensureHistory() {
     if (!this.history) {
       this.history = createBrowserHistory({
-        basename: this.pageProps.basename
+        basename: this.pageProps.basename === '/' ? undefined : this.pageProps.basename
       });
     }
     return this.history;
@@ -54,9 +54,11 @@ class ReduxContext {
     } else {
       props = defaultProps;
     }
-    if (typeof(ReactElement) === 'function') {
+    // if (typeof(ReactElement) === 'function') {
       ReactElement = withRedux(ReactElement);
-    }
+    // } else if (React.isValidElement(ReactElement)) {
+    //   ReactElement = withRedux(ReactElement);
+    // }
     renderPage(ReactElement, this.domElement, props);
     return this;
   }
