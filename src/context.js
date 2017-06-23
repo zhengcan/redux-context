@@ -3,19 +3,19 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import { resolveDomElement, getPageProps } from './pageUtils';
 import configureStore from './configureStore';
 import withRedux from './withRedux';
-import renderPage from './renderPage';
+import render from './render';
 
 class ReduxContext {
   constructor(domElement) {
     this.domElement = resolveDomElement(domElement);
-    this.pageProps = getPageProps(this.domElement);
+    this.defaultProps = getPageProps(this.domElement);
   }
   createHistory(creator) {
     if (this.history) {
       throw new Error('A history object is already existed.');
     }
     if (typeof(creator) === 'function') {
-      this.history = creator(this.pageProps);
+      this.history = creator(this.defaultProps);
       if (!this.history) {
         throw new Error('No history is created by creator.');
       }
@@ -26,7 +26,7 @@ class ReduxContext {
   ensureHistory() {
     if (!this.history) {
       this.history = createBrowserHistory({
-        basename: this.pageProps.basename === '/' ? undefined : this.pageProps.basename
+        basename: this.defaultProps.basename === '/' ? undefined : this.defaultProps.basename
       });
     }
     return this.history;
@@ -46,20 +46,15 @@ class ReduxContext {
     this.ensureStore();
     this.store.replaceReducer(reducers);
   }
-  renderPage(ReactElement, props) {
+  render(ReactElement, props) {
     this.ensureStore();
-    let defaultProps = { store: this.store, history: this.history };
-    if (props) {
-      props = Object.assign({}, props, defaultProps);
-    } else {
-      props = defaultProps;
-    }
-    // if (typeof(ReactElement) === 'function') {
-      ReactElement = withRedux(ReactElement);
-    // } else if (React.isValidElement(ReactElement)) {
-    //   ReactElement = withRedux(ReactElement);
-    // }
-    renderPage(ReactElement, this.domElement, props);
+    let mergedProps = Object.assign(
+      {},
+      this.defaultProps,
+      props,
+      { store: this.store, history: this.history }
+    );
+    render(withRedux(ReactElement), this.domElement, mergedProps);
     return this;
   }
 }

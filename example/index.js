@@ -6,7 +6,7 @@ import reducers from './reducers';
 let context = ReduxContext
   .forDOM()
   .configureStore(reducers)
-  .renderPage(IndexPage);
+  .render(IndexPage);
 
 // Hot Module Replacement API
 if (module.hot) {
@@ -14,6 +14,6 @@ if (module.hot) {
     context.replaceReducer(require('./reducers').default)
   );
   module.hot.accept('./IndexPage', () => {
-    context.renderPage(IndexPage);
+    context.render(IndexPage);
   });
 }
