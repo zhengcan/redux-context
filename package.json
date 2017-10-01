@@ -1,6 +1,6 @@
 {
   "name": "redux-context",
-  "version": "0.1.1",
+  "version": "0.2.0-alpha01",
   "description": "A redux delegate object used to create store, render page, and integrate React-Router and more",
   "repository": "https://github.com/zhengcan/redux-context",
   "author": "Zheng Can <zc3593835@gmail.com>",
@@ -24,32 +24,32 @@
     "start": "cross-env NODE_ENV=watch gulp webpack:watch"
   },
   "devDependencies": {
-    "chai": "^4.0.2",
-    "cross-env": "^5.0.1",
+    "chai": "^4.1.2",
+    "cross-env": "^5.0.5",
     "gulp": "^3.9.1",
-    "gulp-predefined-tasks": "^0.1.10",
+    "gulp-predefined-tasks": "0.2.0-alpha02",
     "lodash": "^4.17.4",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-hot-loader": "v3.0.0-beta.7",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6"
   },
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "react-redux": "^5.0.5",
-    "react-router": "^4.1.1",
-    "react-router-dom": "^4.1.1",
+    "prop-types": "^15.6.0",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
-    "redux": "^3.6.0",
+    "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },
   "optionalDependencies": {
     "redux-logger": "^3.0.6"
   },
   "peerDependencies": {
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-hot-loader": "v3.0.0-beta.7",
     "redux-devtools-extension": "^2.13.2"
   }
