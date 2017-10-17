@@ -1,5 +1,6 @@
 import React from 'react';
 import createBrowserHistory from 'history/createBrowserHistory';
+import _ from 'lodash';
 import { resolveDomElement, getPageProps } from './pageUtils';
 import configureStore from './configureStore';
 import withRedux from './withRedux';
@@ -48,7 +49,7 @@ class ReduxContext {
   }
   render(ReactElement, props) {
     this.ensureStore();
-    let mergedProps = Object.assign(
+    let mergedProps = _.assign(
       {},
       this.defaultProps,
       props,

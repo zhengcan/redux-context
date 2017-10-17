@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export function resolveDomElement(domElement) {
   if (domElement instanceof Element) {
     // Nice
@@ -19,7 +21,7 @@ export function getPageProps(domElement) {
   if (domElement) {
     domElement = resolveDomElement(domElement);
     if (domElement.dataset) {
-      pageProps = Object.assign({}, domElement.dataset, pageProps);
+      pageProps = _.assign({}, domElement.dataset, pageProps);
     }
   }
 

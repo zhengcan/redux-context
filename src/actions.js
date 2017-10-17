@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 class ActionGroup {
   constructor(name, ...ops) {
     this._name = name;
@@ -7,7 +9,7 @@ class ActionGroup {
     }
   }
   clone() {
-    return Object.assign(new ActionGroup(this._name), this);
+    return _.assign(new ActionGroup(this._name), this);
   }
   extend(...ops) {
     if (ops.length === 0) {
