@@ -4,9 +4,7 @@ class ActionGroup {
   constructor(name, ...ops) {
     this._name = name;
     let prefix = this._name + '.';
-    for (let op of ops) {
-      this[op] = prefix + op;
-    }
+    _.forEach(ops, op => this[op] = prefix + op);
   }
   clone() {
     return _.assign(new ActionGroup(this._name), this);
@@ -17,20 +15,14 @@ class ActionGroup {
     }
     let cloned = this.clone();
     let prefix = this._name + '.';
-    for (let op of ops) {
-      cloned[op] = prefix + op;
-    }
+    _.forEach(ops, op => cloned[op] = prefix + op);
     return cloned;
   }
   bind(params) {
     if (params) {
       let cloned = this.clone();
       let clonedParams = cloned.params = {};
-      for (var key in params) {
-        if (params.hasOwnProperty(key)) {
-          clonedParams[key] = params[key];
-        }
-      }
+      _.assign(clonedParams, params);
       return cloned;
     } else {
       return this;
