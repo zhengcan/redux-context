@@ -47,7 +47,7 @@ class ReduxContext {
     this.ensureStore();
     this.store.replaceReducer(reducers);
   }
-  render(ReactElement, props) {
+  render(ReactElement, props, containerProps) {
     this.ensureStore();
     let mergedProps = _.assign(
       {},
@@ -55,7 +55,7 @@ class ReduxContext {
       props,
       { store: this.store, history: this.history }
     );
-    render(withRedux(ReactElement), this.domElement, mergedProps);
+    render(withRedux(ReactElement), this.domElement, mergedProps, containerProps);
     return this;
   }
 }

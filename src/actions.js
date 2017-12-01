@@ -34,11 +34,12 @@ export function makeActionGroup(name, ...ops) {
   return new ActionGroup(name, ...ops);
 }
 
+export const INIT    = 'INIT';
 export const QUERY   = 'QUERY';
 export const SUCCESS = 'SUCCESS';
 export const ERROR   = 'ERROR';
 export function makeAjaxAction(name, ...ops) {
-  return new ActionGroup(name, QUERY, SUCCESS, ERROR, ...ops);
+  return new ActionGroup(name, INIT, QUERY, SUCCESS, ERROR, ...ops);
 }
 
 export const BEGIN  = 'BEGIN';
